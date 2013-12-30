@@ -1,4 +1,9 @@
 <?php
-
 $config = include 'config.inc.php';
-// 判断域名哈，走分发。
+include 'initialization.class.php';
+$initialization = new Initialization();
+$domain = $initialization->getDomainFromHost($_SERVER['HTTP_HOST']);
+define('DOMAIN', $domain);
+// 走分发。
+$dispatch_route = $initialization->getDispatchRoute($config);
+
